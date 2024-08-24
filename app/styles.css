@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotifyFake</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Pantalla de inicio con el código de acceso -->
+    <div id="login-screen">
+        <div id="login-content">
+            <img src="icons/app-logo.png" alt="NotifyFake Logo" id="login-logo">
+            <h1>NotifyFake</h1>
+            <h2>Ingrese el código de acceso</h2>
+            <input type="password" id="access-code" placeholder="Código de acceso" onkeydown="checkEnter(event)">
+            <button onclick="checkCode()">Entrar</button>
+        </div>
+    </div>
+
+    <!-- Pantalla principal con la generación de notificaciones -->
+    <div id="main-screen" style="display:none;">
+        <header>
+            <div id="menu-container">
+                <button id="open-menu-btn">Seleccionar Aplicación</button>
+            </div>
+            <div id="logo-container">
+                <span id="app-name">NotifyFake</span>
+            </div>
+            <div id="side-menu-container">
+                <button id="side-menu-btn" onclick="openPreview()">Menú</button>
+            </div>
+        </header>
+
+        <div id="app-selection" class="menu">
+            <h3>Elija la aplicación</h3>
+            <button onclick="selectApp('Shopify')">
+                <img src="icons/shopify-icon.png" alt="Shopify"> Shopify
+            </button>
+            <button onclick="selectApp('WooCommerce')">
+                <img src="icons/woocommerce-icon.png" alt="WooCommerce"> WooCommerce
+            </button>
+            <button onclick="selectApp('eBay')">
+                <img src="icons/ebay-icon.png" alt="eBay"> eBay
+            </button>
+            <button onclick="selectApp('Amazon')">
+                <img src="icons/amazon-icon.png" alt="Amazon"> Amazon
+            </button>
+            <button onclick="selectApp('Vinted')">
+                <img src="icons/vinted-icon.png" alt="Vinted"> Vinted
+            </button>
+            <button onclick="closeMenu()">Cerrar Menú</button>
+        </div>
+
+        <div id="notification-form">
+            <h2>Generar Notificaciones para: <span id="selected-app-name">[Seleccione una App]</span></h2>
+
+            <label for="notification-title">Título de la Notificación</label>
+            <input type="text" id="notification-title" value="¡Nuevo Pedido!">
+
+            <label for="notification-message">Mensaje de la Notificación</label>
+            <input type="text" id="notification-message" value="[Mi Tienda] Tienes un nuevo pedido de 2 artículos, lo que suma un total de">
+
+            <label for="notification-amount">Cantidad (€)</label>
+            <input type="number" id="notification-amount" value="59.98">
+
+            <label for="notification-count">Número de Notificaciones</label>
+            <input type="number" id="notification-count" value="1" max="100">
+
+            <button onclick="generateNotifications()" id="generate-button">
+                <img src="icons/bell-icon.png" alt="Generar Notificaciones">
+            </button>
+        </div>
+    </div>
+
+    <!-- Página de vista previa -->
+    <div id="preview-screen" style="display:none;">
+        <header>
+            <h2>Vista Previa del Mensaje</h2>
+            <button onclick="closePreview()">Cerrar Vista Previa</button>
+        </header>
+        <div id="preview-content">
+            <div id="message-preview">
+                <p id="preview-text"></p>
+            </div>
+            <label for="random-text">Texto Aleatorio</label>
+            <input type="text" id="random-text" placeholder="Ingrese texto aleatorio">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
